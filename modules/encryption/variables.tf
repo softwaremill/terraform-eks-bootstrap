@@ -13,7 +13,7 @@ variable "environment" {
   type        = string
 }
 
-variable "additional_tags" {
+variable "tags" {
   description = "Additional tags to include"
   type        = map(string)
   default     = {}

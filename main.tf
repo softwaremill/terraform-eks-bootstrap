@@ -15,22 +15,23 @@ module "vpc" {
 
   public_subnet_tags = {
     "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared",
-    "kubernetes.io/role/elb"                            = "1"
-    "subnet"                                            = "public"
+    "kubernetes.io/role/elb"                        = "1"
+    "subnet"                                        = "public"
   }
 
   private_subnet_tags = {
     "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared"
-    "kubernetes.io/role/internal-elb"                   = "1"
-    "subnet"                                            = "private"
+    "kubernetes.io/role/internal-elb"               = "1"
+    "subnet"                                        = "private"
   }
   tags = local.tags
 }
 
 module "kubernetes_secrets_encryption_key" {
-  source      = "modules/encryption"
-  org         = var.org
-  environment = var.environment
+  source          = "modules/encryption"
+  org             = var.org
+  environment     = var.environment
+  tags = local.tags
 }
 
 module "eks" {

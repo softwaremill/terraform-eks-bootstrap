@@ -9,7 +9,7 @@ variable "region" {
 variable "org" {
   description = "Organization name - part of other resource names"
   type        = string
-  default     = ""
+  default     = "terraform"
 }
 
 variable "environment" {
