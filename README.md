@@ -1,1 +1,1 @@
-# sml-eks-bootstrap
+# terrraform-eks-bootstrap
