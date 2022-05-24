@@ -11,7 +11,9 @@ module "vpc" {
   enable_nat_gateway     = var.vpc_nat_setting.enable_nat_gateway
   single_nat_gateway     = !var.vpc_nat_setting.multi_az_nat_gateway
   one_nat_gateway_per_az = var.vpc_nat_setting.multi_az_nat_gateway
-  enable_dns_hostnames   = true
+  enable_dns_hostnames   = true # require set to true for enabling cluster private access
+  enable_dns_support     = true # require set to true for enabling cluster private access
+
 
   public_subnet_tags = {
     "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared",
@@ -28,10 +30,10 @@ module "vpc" {
 }
 
 module "kubernetes_secrets_encryption_key" {
-  source          = "modules/encryption"
-  org             = var.org
-  environment     = var.environment
-  tags = local.tags
+  source      = "modules/encryption"
+  org         = var.org
+  environment = var.environment
+  tags        = local.tags
 }
 
 module "eks" {
@@ -72,7 +74,7 @@ module "eks" {
   eks_managed_node_groups         = var.eks_cluster_additional_node_groups
 
   # Fargate Profile(s)
-  fargate_profiles = {}
+  fargate_profiles = var.eks_cluster_fargate_profiles
 
   # aws-auth configmap
   manage_aws_auth_configmap = true

@@ -76,18 +76,37 @@ variable "eks_cluster_version" {
 variable "eks_cluster_log_types" {
   description = "A list of the desired control plane logs to enable"
   type        = list(string)
-  default     = ["api","audit","authenticator"]
+  default     = ["api", "audit", "authenticator"]
+}
+
+variable "eks_cluster_endpoint_access" {
+  description = "EKS managed node group default configurations"
+  type = object({
+    enable_public_access: bool
+    enable_private_access: bool
+  })
+  default = {
+    disk_size                             = 40
+    instance_types                        = ["m5.large"]
+    attach_cluster_primary_security_group = true
+    min_size                              = 1
+    max_size                              = 5
+    desired_size                          = 3
+    labels = {
+      "node-group" = "default"
+    }
+  }
 }
 
 variable "eks_cluster_default_node_group" {
   description = "EKS managed node group default configurations"
   default = {
-    disk_size      = 40
-    instance_types = ["m5.large"]
+    disk_size                             = 40
+    instance_types                        = ["m5.large"]
     attach_cluster_primary_security_group = true
-    min_size     = 1
-    max_size     = 5
-    desired_size = 3
+    min_size                              = 1
+    max_size                              = 5
+    desired_size                          = 3
     labels = {
       "node-group" = "default"
     }
@@ -96,5 +115,11 @@ variable "eks_cluster_default_node_group" {
 
 variable "eks_cluster_additional_node_groups" {
   description = "EKS managed node group default configurations"
-  default = {}
+  default     = {}
+}
+
+variable "eks_cluster_fargate_profiles" {
+  description = "EKS managed node group default configurations"
+  type        = map(object({}))
+  default     = {}
 }
