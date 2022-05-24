@@ -46,8 +46,8 @@ module "eks" {
   vpc_id     = module.vpc.vpc_id
   subnet_ids = concat(module.vpc.public_subnets, module.vpc.private_subnets)
 
-  cluster_endpoint_private_access = true
-  cluster_endpoint_public_access  = true
+  cluster_endpoint_private_access = var.eks_cluster_endpoint_access.enable_private_access
+  cluster_endpoint_public_access  = var.eks_cluster_endpoint_access.enable_public_access
   create_cluster_security_group   = true
   create_node_security_group      = true
   cluster_enabled_log_types       = var.eks_cluster_log_types
@@ -78,27 +78,8 @@ module "eks" {
 
   # aws-auth configmap
   manage_aws_auth_configmap = true
-
-  #  aws_auth_roles = [
-  #    {
-  #      rolearn  = "arn:aws:iam::66666666666:role/role1"
-  #      username = "role1"
-  #      groups   = ["system:masters"]
-  #    },
-  #  ]
-  #
-  #  aws_auth_users = [
-  #    {
-  #      userarn  = "arn:aws:iam::66666666666:user/user1"
-  #      username = "user1"
-  #      groups   = ["system:masters"]
-  #    },
-  #    {
-  #      userarn  = "arn:aws:iam::66666666666:user/user2"
-  #      username = "user2"
-  #      groups   = ["system:masters"]
-  #    },
-  #  ]
+  aws_auth_roles = var.eks_cluster_auth_role
+  aws_auth_users = var.eks_cluster_auth_user
 
 
   tags = local.tags

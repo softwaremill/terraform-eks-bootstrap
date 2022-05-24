@@ -82,19 +82,12 @@ variable "eks_cluster_log_types" {
 variable "eks_cluster_endpoint_access" {
   description = "EKS managed node group default configurations"
   type = object({
-    enable_public_access: bool
-    enable_private_access: bool
+    enable_public_access : bool
+    enable_private_access : bool
   })
   default = {
-    disk_size                             = 40
-    instance_types                        = ["m5.large"]
-    attach_cluster_primary_security_group = true
-    min_size                              = 1
-    max_size                              = 5
-    desired_size                          = 3
-    labels = {
-      "node-group" = "default"
-    }
+    enable_public_access  = true
+    enable_private_access = false
   }
 }
 
@@ -114,12 +107,32 @@ variable "eks_cluster_default_node_group" {
 }
 
 variable "eks_cluster_additional_node_groups" {
-  description = "EKS managed node group default configurations"
+  description = "EKS managed additional node group"
   default     = {}
 }
 
 variable "eks_cluster_fargate_profiles" {
-  description = "EKS managed node group default configurations"
+  description = "EKS Fargate profile object"
   type        = map(object({}))
   default     = {}
+}
+
+variable "eks_cluster_auth_user" {
+  description = "AWS users with access permission to EKS cluster"
+  type = list(object({
+    userarn : string
+    username : string
+    groups = list(string)
+  }))
+  default = []
+}
+
+variable "eks_cluster_auth_role" {
+  description = "AWS roles with access permission to EKS cluster"
+  type = list(object({
+    rolearn : string
+    username : string
+    groups = list(string)
+  }))
+  default = []
 }
