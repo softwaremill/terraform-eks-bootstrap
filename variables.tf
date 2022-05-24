@@ -93,6 +93,7 @@ variable "eks_cluster_endpoint_access" {
 
 variable "eks_cluster_default_node_group" {
   description = "EKS managed node group default configurations"
+  type        = any
   default = {
     disk_size                             = 40
     instance_types                        = ["m5.large"]
@@ -108,6 +109,7 @@ variable "eks_cluster_default_node_group" {
 
 variable "eks_cluster_additional_node_groups" {
   description = "EKS managed additional node group"
+  type        = any
   default     = {}
 }
 
