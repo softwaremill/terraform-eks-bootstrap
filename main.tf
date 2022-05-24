@@ -30,7 +30,7 @@ module "vpc" {
 }
 
 module "kubernetes_secrets_encryption_key" {
-  source      = "modules/encryption"
+  source      = "./modules/encryption"
   org         = var.org
   environment = var.environment
   tags        = local.tags
