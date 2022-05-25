@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: $GITHUB_REF_NAME
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v1
       - name: Terraform Init
