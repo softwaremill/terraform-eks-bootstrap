@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:softwaremill/terraform-eks-bootstrap.git//.?ref=feat/aws-infrastructure-init"
+  source = "git@github.com:softwaremill/terraform-eks-bootstrap.git//."
 }
 
 include {
