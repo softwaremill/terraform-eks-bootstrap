@@ -70,14 +70,14 @@ module "eks" {
 
 
   # EKS Managed Node Group(s)
-  eks_managed_node_group_defaults = var.eks_cluster_default_node_group
-  eks_managed_node_groups         = var.eks_cluster_additional_node_groups
+  eks_managed_node_group_defaults = var.eks_cluster_node_groups_default_configuration
+  eks_managed_node_groups         = var.eks_cluster_node_groups
 
   # Fargate Profile(s)
   fargate_profiles = var.eks_cluster_fargate_profiles
 
   # aws-auth configmap
-  manage_aws_auth_configmap = true
+  manage_aws_auth_configmap = false
   aws_auth_roles            = var.eks_cluster_auth_role
   aws_auth_users            = var.eks_cluster_auth_user
 

@@ -91,7 +91,7 @@ variable "eks_cluster_endpoint_access" {
   }
 }
 
-variable "eks_cluster_default_node_group" {
+variable "eks_cluster_node_groups_default_configuration" {
   description = "EKS managed node group default configurations"
   type        = any
   default = {
@@ -107,7 +107,7 @@ variable "eks_cluster_default_node_group" {
   }
 }
 
-variable "eks_cluster_additional_node_groups" {
+variable "eks_cluster_node_groups" {
   description = "EKS managed additional node group"
   type        = any
   default     = {}
