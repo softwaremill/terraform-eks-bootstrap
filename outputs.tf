@@ -68,3 +68,13 @@ output "eks_cluster_primary_security_group_id" {
   value       = module.eks.cluster_primary_security_group_id
   description = "The cluster primary security group ID created by the EKS cluster"
 }
+
+output "eks_cluster_endpoint" {
+  value       = module.eks.cluster_primary_security_group_id
+  description = "The cluster endpoint for your Kubernetes API server"
+}
+
+output "eks_cluster_certificate_authority_data" {
+  value       = module.eks.cluster_certificate_authority_data
+  description = "Base64 encoded certificate data required to communicate with the cluster"
+}
