@@ -52,15 +52,9 @@ module "eks" {
   create_cluster_security_group   = true
   create_node_security_group      = true
   cluster_enabled_log_types       = var.eks_cluster_log_types
+  cluster_addons                  = var.eks_cluster_addons
 
-  cluster_addons = {
-    coredns = {
-      resolve_conflicts = "OVERWRITE"
-    }
-    vpc-cni = {
-      resolve_conflicts = "OVERWRITE"
-    }
-  }
+
 
   cluster_encryption_config = [
     {
