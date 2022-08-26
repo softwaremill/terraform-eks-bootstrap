@@ -138,3 +138,23 @@ variable "eks_cluster_auth_role" {
   }))
   default = []
 }
+
+variable "eks_default_cluster_addons" {
+  description = "Map of default cluster addon configurations to enable for the cluster."
+  type        = any
+  default = {
+    coredns = {
+      resolve_conflicts = "OVERWRITE"
+    }
+    vpc-cni = {
+      resolve_conflicts = "OVERWRITE"
+    }
+  }
+}
+
+variable "eks_additional_cluster_addons" {
+  description = "Map of additional cluster addon configurations to enable for the cluster. Addon name can be the map keys or set with `name`"
+  type        = any
+  default     = {}
+
+}
