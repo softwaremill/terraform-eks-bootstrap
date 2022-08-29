@@ -78,4 +78,17 @@ module "eks" {
 
 
   tags = local.tags
+
+}
+
+resource "kubernetes_storage_class" "storage_class_gp3" {
+  metadata {
+    name = var.eks_storage_class_name
+  }
+  storage_provisioner = "ebs.csi.aws.com"
+  parameters = {
+    type   = "gp3"
+    fsType = "ext4"
+  }
+  volume_binding_mode = "WaitForFirstConsumer"
 }
