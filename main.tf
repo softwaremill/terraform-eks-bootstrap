@@ -81,14 +81,18 @@ module "eks" {
 
 }
 
-resource "kubernetes_storage_class" "storage_class_gp3" {
+resource "kubernetes_storage_class" "storage_class" {
+
+  for_each = local.storage_classes
+
   metadata {
-    name = var.eks_storage_class_name
+    name = lookup(each.value, "name", "")
   }
-  storage_provisioner = "ebs.csi.aws.com"
+
+  storage_provisioner = lookup(each.value, "storage_class_provisioner", "")
   parameters = {
-    type   = "gp3"
-    fsType = "ext4"
+    type   = lookup(each.value, "type", "")
+    fsType = lookup(each.value, "fsType", "")
   }
-  volume_binding_mode = "WaitForFirstConsumer"
+  volume_binding_mode = lookup(each.value, "volume_binding_mode", "WaitForFirstConsumer")
 }

@@ -159,9 +159,8 @@ variable "eks_additional_cluster_addons" {
 
 }
 
-variable "eks_storage_class_name" {
-  description = "Name of the EBS storage class GP3"
-  type        = string
-  default     = "gp3"
-
+variable "eks_storage_classes" {
+  description = "EBS storage class with custom parameters"
+  type        = list(map(string))
+  default     = []
 }
