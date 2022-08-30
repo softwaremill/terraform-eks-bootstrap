@@ -82,3 +82,14 @@ No requirements.
 | <a name="output_vpc_public_route_table_ids"></a> [vpc\_public\_route\_table\_ids](#output\_vpc\_public\_route\_table\_ids) | The list of IDs of public route tables |
 | <a name="output_vpc_public_subnets_ids"></a> [vpc\_public\_subnets\_ids](#output\_vpc\_public\_subnets\_ids) | The list of public subnets IDs associated with the VPC |
 <!-- END_TF_DOCS -->
+## eks_storage_classes variable
+The eks_storage_classes variable takes the following parameters:
+| Name | Description | Default | Requirement |
+| --- | --- | --- | --- |
+| <a name="name"></a> [name](#name) | Standard storage class's name in metadata | "" | Required |
+| <a name="storage_class_provisioner"></a> [storage_class_provisioner](#storage_class_provisioner) | Indicates the type of the provisioner | "" | Required |
+| <a name="type"></a> [type](#type) | Type of the storage class | "" | Optional |
+| <a name="fsType"></a> [fsType](#fsType) | fsType that is supported by kubernetes | ""| Optional |
+| <a name="volume_binding_mode"></a> [volume\_binding\_mode](#volume\_binding\_mode) | Indicates when volume binding and dynamic provisioning should occur | "WaitForFirstConsumer" | Optional |
+
+
