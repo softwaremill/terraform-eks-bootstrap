@@ -88,7 +88,7 @@ The eks_storage_classes variable takes the following parameters:
 |------|-------------|------|---------|:--------:|
 | <a name="name"></a> [name](#name) | Standard storage class's name in metadata | `string` | "" | Required |
 | <a name="storage_class_provisioner"></a> [storage_class_provisioner](#storage_class_provisioner) | Indicates the type of the provisioner | `string` | "" | Required |
-| <a name="parameters"></a> [parameters](#parameters) | The parameters for the provisioner that should create volumes of this storage class. See the documentaion for the [available parameters](https://kubernetes.io/docs/concepts/storage/storage-classes/#parameters) | `map(string)` | "" | Optional |
+| <a name="parameters"></a> [parameters](#parameters) | The parameters for the provisioner that should create volumes of this storage class. See the documentaion for the [available parameters](https://kubernetes.io/docs/concepts/storage/storage-classes/#parameters) | `map(string)` | {} | Optional |
 | <a name="volume_binding_mode"></a> [volume\_binding\_mode](#volume\_binding\_mode) | Indicates when volume binding and dynamic provisioning should occur | `string` | "WaitForFirstConsumer" | Optional |
 | <a name="reclaim_policy"></a> [reclaim\_policy](#reclaim\_policy) | Indicates the reclaim policy to use | `string` | "Delete" | Optional |
 
