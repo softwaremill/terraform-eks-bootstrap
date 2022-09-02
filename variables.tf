@@ -162,11 +162,11 @@ variable "eks_additional_cluster_addons" {
 variable "eks_storage_classes" {
   description = "EBS storage class with custom parameters"
   type = list(object({
-    name                = string
+    name                      = string
     storage_class_provisioner = string
-    parameters          = optional(map(string))
-    volume_binding_mode = optional(string)
-    reclaim_policy = optional(string)
+    parameters                = optional(map(string))
+    volume_binding_mode       = optional(string)
+    reclaim_policy            = optional(string)
 
     }
   ))
