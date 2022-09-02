@@ -1,3 +1,7 @@
+terraform {
+  experiments = [module_variable_optional_attrs]
+}
+
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 3.0"
@@ -78,4 +82,21 @@ module "eks" {
 
 
   tags = local.tags
+
+}
+
+resource "kubernetes_storage_class" "storage_class" {
+
+  for_each = local.storage_classes
+
+  metadata {
+    name = lookup(each.value, "name", "")
+  }
+
+  storage_provisioner = lookup(each.value, "storage_class_provisioner", "")
+
+  parameters = each.value.parameters
+
+  volume_binding_mode = lookup(each.value, "volume_binding_mode", "WaitForFirstConsumer")
+  reclaim_policy      = lookup(each.value, "reclaim_policy", "Delete")
 }
