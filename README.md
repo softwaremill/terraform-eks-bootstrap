@@ -20,7 +20,6 @@ No requirements.
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 4.29.0 |
 
-
 ## Modules
 
 | Name | Source | Version |
@@ -42,7 +41,7 @@ No requirements.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_tags"></a> [additional\_tags](#input\_additional\_tags) | Additional tags to include | `map(string)` | `{}` | no |
-| <a name="input_eks_additional_cluster_addons"></a> [eks\_additional\_cluster\_addons](#input\_eks\_additional\_cluster\_addons) | Map of additional cluster addon configurations to enable for the cluster. Addon name can be the map keys or set with `name` | `any` | `{}` | no |
+| <a name="input_eks_additional_cluster_addons"></a> [eks\_additional\_cluster\_addons](#input\_eks\_additional\_cluster\_addons) | Map of additional cluster addon configurations to enable for the cluster. | `any` | `{}` | no |
 | <a name="input_eks_cluster_auth_role"></a> [eks\_cluster\_auth\_role](#input\_eks\_cluster\_auth\_role) | AWS roles with access permission to EKS cluster | <pre>list(object({<br>    rolearn : string<br>    username : string<br>    groups = list(string)<br>  }))</pre> | `[]` | no |
 | <a name="input_eks_cluster_auth_user"></a> [eks\_cluster\_auth\_user](#input\_eks\_cluster\_auth\_user) | AWS users with access permission to EKS cluster | <pre>list(object({<br>    userarn : string<br>    username : string<br>    groups = list(string)<br>  }))</pre> | `[]` | no |
 | <a name="input_eks_cluster_endpoint_access"></a> [eks\_cluster\_endpoint\_access](#input\_eks\_cluster\_endpoint\_access) | EKS managed node group default configurations | <pre>object({<br>    enable_public_access : bool<br>    enable_private_access : bool<br>  })</pre> | <pre>{<br>  "enable_private_access": false,<br>  "enable_public_access": true<br>}</pre> | no |
