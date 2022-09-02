@@ -153,9 +153,10 @@ variable "eks_default_cluster_addons" {
 }
 
 variable "eks_additional_cluster_addons" {
-  description = "Map of additional cluster addon configurations to enable for the cluster. Addon name can be the map keys or set with `name`"
-  type        = any
-  default     = {}
+  description = "Map of additional cluster addon configurations to enable for the cluster."
+
+  type    = any
+  default = {}
 
 }
 
