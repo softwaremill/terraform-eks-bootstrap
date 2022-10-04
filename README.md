@@ -18,7 +18,7 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.31.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.33.0 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.13.1 |
 
 ## Modules
@@ -54,6 +54,7 @@ No requirements.
 | <a name="input_eks_cluster_node_groups_default_configuration"></a> [eks\_cluster\_node\_groups\_default\_configuration](#input\_eks\_cluster\_node\_groups\_default\_configuration) | EKS managed node group default configurations | `any` | <pre>{<br>  "attach_cluster_primary_security_group": true,<br>  "desired_size": 3,<br>  "disk_size": 40,<br>  "instance_types": [<br>    "m5.large"<br>  ],<br>  "labels": {<br>    "node-group": "default"<br>  },<br>  "max_size": 5,<br>  "min_size": 1<br>}</pre> | no |
 | <a name="input_eks_cluster_version"></a> [eks\_cluster\_version](#input\_eks\_cluster\_version) | Kubernetes cluster version | `string` | `"1.22"` | no |
 | <a name="input_eks_default_cluster_addons"></a> [eks\_default\_cluster\_addons](#input\_eks\_default\_cluster\_addons) | Map of default cluster addon configurations to enable for the cluster. | `any` | <pre>{<br>  "coredns": {<br>    "resolve_conflicts": "OVERWRITE"<br>  },<br>  "vpc-cni": {<br>    "resolve_conflicts": "OVERWRITE"<br>  }<br>}</pre> | no |
+| <a name="input_eks_enable_secret_encryption"></a> [eks\_enable\_secret\_encryption](#input\_eks\_enable\_secret\_encryption) | Should KMS key to encrypt kubernetes secrets be generated | `bool` | `true` | no |
 | <a name="input_eks_storage_classes"></a> [eks\_storage\_classes](#input\_eks\_storage\_classes) | EBS storage class with custom parameters | <pre>list(object({<br>    name                      = string<br>    storage_class_provisioner = string<br>    parameters                = optional(map(string))<br>    volume_binding_mode       = optional(string)<br>    reclaim_policy            = optional(string)<br><br>    }<br>  ))</pre> | `[]` | no |
 | <a name="input_enable_bastion"></a> [enable\_bastion](#input\_enable\_bastion) | True if bastion host should be created | `bool` | `false` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment name | `string` | n/a | yes |
