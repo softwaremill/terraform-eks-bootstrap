@@ -173,3 +173,9 @@ variable "eks_storage_classes" {
   ))
   default = []
 }
+
+variable "eks_enable_secret_encryption" {
+  description = "Should KMS key to encrypt kubernetes secrets be generated"
+  type        = bool
+  default     = true
+}
