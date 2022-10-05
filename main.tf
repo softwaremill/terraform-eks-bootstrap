@@ -35,6 +35,7 @@ module "kubernetes_secrets_encryption_key" {
   org         = var.org
   environment = var.environment
   tags        = local.tags
+  count       = var.eks_enable_secret_encryption ? 1 : 0
 }
 
 module "eks" {
@@ -55,13 +56,11 @@ module "eks" {
   cluster_addons                  = merge(var.eks_default_cluster_addons, var.eks_additional_cluster_addons)
 
 
-
-  cluster_encryption_config = [
+  cluster_encryption_config = var.eks_enable_secret_encryption ? [
     {
-      provider_key_arn = module.kubernetes_secrets_encryption_key.kubernetes_secrets_encryption_key_arn
+      provider_key_arn = module.kubernetes_secrets_encryption_key[0].kubernetes_secrets_encryption_key_arn
       resources        = ["secrets"]
-    }
-  ]
+  }] : []
 
 
   # EKS Managed Node Group(s)
