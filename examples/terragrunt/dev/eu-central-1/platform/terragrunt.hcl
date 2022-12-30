@@ -1,5 +1,5 @@
 terraform {
-  source = "../../../../..//."
+  source = "git@github.com:softwaremill/terraform-eks-bootstrap.git//."
 }
 
 include {
