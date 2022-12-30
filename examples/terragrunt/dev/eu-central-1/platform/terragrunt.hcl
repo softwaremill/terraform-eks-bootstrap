@@ -20,6 +20,10 @@ inputs = {
     }
   }
 
+  azs = ["eu-central-1a", "eu-central-1b", "eu-central-1c"]
+
+  eks_enable_secret_encryption = false
+
   eks_cluster_auth_user = [{
     userarn  = "arn:aws:iam::11111111111:user/user1"
     username = "user1"
