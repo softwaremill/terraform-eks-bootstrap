@@ -179,3 +179,9 @@ variable "eks_enable_secret_encryption" {
   type        = bool
   default     = true
 }
+
+variable "azs" {
+  description = "A list of availability zones names or ids in the region. If empty uses all available azs in selected region"
+  type = list(string)
+  default = []
+}
