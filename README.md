@@ -43,7 +43,6 @@ No requirements.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_tags"></a> [additional\_tags](#input\_additional\_tags) | Additional tags to include | `map(string)` | `{}` | no |
-| <a name="input_azs"></a> [azs](#input\_azs) | A list of availability zones names or ids in the region. If empty uses all available azs in selected region | `list(string)` | `[]` | no |
 | <a name="input_eks_additional_cluster_addons"></a> [eks\_additional\_cluster\_addons](#input\_eks\_additional\_cluster\_addons) | Map of additional cluster addon configurations to enable for the cluster. | `any` | `{}` | no |
 | <a name="input_eks_cluster_auth_role"></a> [eks\_cluster\_auth\_role](#input\_eks\_cluster\_auth\_role) | AWS roles with access permission to EKS cluster | <pre>list(object({<br>    rolearn : string<br>    username : string<br>    groups = list(string)<br>  }))</pre> | `[]` | no |
 | <a name="input_eks_cluster_auth_user"></a> [eks\_cluster\_auth\_user](#input\_eks\_cluster\_auth\_user) | AWS users with access permission to EKS cluster | <pre>list(object({<br>    userarn : string<br>    username : string<br>    groups = list(string)<br>  }))</pre> | `[]` | no |
@@ -56,6 +55,7 @@ No requirements.
 | <a name="input_eks_cluster_version"></a> [eks\_cluster\_version](#input\_eks\_cluster\_version) | Kubernetes cluster version | `string` | `"1.22"` | no |
 | <a name="input_eks_default_cluster_addons"></a> [eks\_default\_cluster\_addons](#input\_eks\_default\_cluster\_addons) | Map of default cluster addon configurations to enable for the cluster. | `any` | <pre>{<br>  "coredns": {<br>    "resolve_conflicts": "OVERWRITE"<br>  },<br>  "vpc-cni": {<br>    "resolve_conflicts": "OVERWRITE"<br>  }<br>}</pre> | no |
 | <a name="input_eks_enable_secret_encryption"></a> [eks\_enable\_secret\_encryption](#input\_eks\_enable\_secret\_encryption) | Should KMS key to encrypt kubernetes secrets be generated | `bool` | `true` | no |
+| <a name="input_eks_single_az"></a> [eks\_single\_az](#input\_eks\_single\_az) | Specifies if all node's should be deployed in the same AZ | `bool` | `false` | no |
 | <a name="input_eks_storage_classes"></a> [eks\_storage\_classes](#input\_eks\_storage\_classes) | EBS storage class with custom parameters | <pre>list(object({<br>    name                      = string<br>    storage_class_provisioner = string<br>    parameters                = optional(map(string))<br>    volume_binding_mode       = optional(string)<br>    reclaim_policy            = optional(string)<br><br>    }<br>  ))</pre> | `[]` | no |
 | <a name="input_enable_bastion"></a> [enable\_bastion](#input\_enable\_bastion) | True if bastion host should be created | `bool` | `false` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment name | `string` | n/a | yes |

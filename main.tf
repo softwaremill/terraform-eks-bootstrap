@@ -64,7 +64,7 @@ module "eks" {
 
 
   # EKS Managed Node Group(s)
-  eks_managed_node_group_defaults = var.eks_cluster_node_groups_default_configuration
+  eks_managed_node_group_defaults = local.eks_managed_node_group_defaults
   eks_managed_node_groups         = var.eks_cluster_node_groups
 
   # Fargate Profile(s)
