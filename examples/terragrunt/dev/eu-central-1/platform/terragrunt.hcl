@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:softwaremill/terraform-eks-bootstrap.git//."
+  source = "../../../../..//."
 }
 
 include {
@@ -19,10 +19,10 @@ inputs = {
       capacity_type  = "SPOT"
     }
   }
-
-  azs = ["eu-central-1a", "eu-central-1b", "eu-central-1c"]
-
+  
   eks_enable_secret_encryption = false
+
+  eks_single_az                = true
 
   eks_cluster_auth_user = [{
     userarn  = "arn:aws:iam::11111111111:user/user1"

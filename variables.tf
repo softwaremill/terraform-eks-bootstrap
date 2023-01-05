@@ -180,8 +180,8 @@ variable "eks_enable_secret_encryption" {
   default     = true
 }
 
-variable "azs" {
-  description = "A list of availability zones names or ids in the region. If empty uses all available azs in selected region"
-  type        = list(string)
-  default     = []
+variable "eks_single_az" {
+  description = "Specifies if all node's should be deployed in the same AZ"
+  type        = bool
+  default     = false
 }
