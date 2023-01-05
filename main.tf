@@ -64,7 +64,7 @@ module "eks" {
 
 
   # EKS Managed Node Group(s)
-  eks_managed_node_group_defaults = var.eks_single_az ? merge(var.eks_cluster_node_groups_default_configuration, { subnet_ids = slice(module.vpc.private_subnets, 0, 1) }) : merge(var.eks_cluster_node_groups_default_configuration, { subnet_ids = module.vpc.private_subnets })
+  eks_managed_node_group_defaults = local.eks_managed_node_group_defaults
   eks_managed_node_groups         = var.eks_cluster_node_groups
 
   # Fargate Profile(s)
