@@ -71,7 +71,7 @@ module "eks" {
   fargate_profiles = var.eks_cluster_fargate_profiles
 
   # aws-auth configmap
-  manage_aws_auth_configmap = false
+  manage_aws_auth_configmap = true
   aws_auth_roles            = var.eks_cluster_auth_role
   aws_auth_users            = var.eks_cluster_auth_user
 
