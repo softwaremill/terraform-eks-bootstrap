@@ -185,3 +185,10 @@ variable "eks_single_az" {
   type        = bool
   default     = false
 }
+
+variable "manage_aws_auth_configmap" {
+  description = "Should Terraform manage aws_auth ConfigMap used for setting up cluster access"
+  type        = bool
+  default     = true
+}
+
