@@ -13,7 +13,7 @@ output "vpc_id" {
 }
 
 output "vpc_public_subnets_ids" {
-  value = try(module.vpc.public_subnets, null)
+  value       = try(module.vpc.public_subnets, null)
   description = "The list of public subnets IDs associated with the VPC"
 }
 
