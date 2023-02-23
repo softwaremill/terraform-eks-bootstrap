@@ -3,38 +3,37 @@
 ############################
 
 output "vpc_name" {
-  value       = module.vpc.name
+  value       = module.vpc[0] == null ? null : module.vpc[0].name
   description = "The name of the VPC"
 }
 
 output "vpc_id" {
-  value       = module.vpc.vpc_id
+  value       = module.vpc[0] == null ? null : module.vpc[0].vpc_id
   description = "The VPC ID"
 }
 
 output "vpc_public_subnets_ids" {
-  value = module.vpc.public_subnets
-
+  value = module.vpc[0] == null ? null : module.vpc[0].public_subnets
   description = "The list of public subnets IDs associated with the VPC"
 }
 
 output "vpc_private_subnets_ids" {
-  value       = module.vpc.private_subnets
+  value       = module.vpc[0] == null ? null : module.vpc[0].private_subnets
   description = "The list of private subnets IDs associated with the VPC"
 }
 
 output "vpc_nats_ids" {
-  value       = module.vpc.nat_ids
+  value       = module.vpc[0] == null ? null : module.vpc[0].nat_ids
   description = "The list of allocation ID for Elastic IPs"
 }
 
 output "vpc_public_route_table_ids" {
-  value       = module.vpc.public_route_table_ids
+  value       = module.vpc[0] == null ? null : module.vpc[0].public_route_table_ids
   description = "The list of IDs of public route tables"
 }
 
 output "vpc_private_route_table_ids" {
-  value       = module.vpc.private_route_table_ids
+  value       = module.vpc[0] == null ? null : module.vpc[0].private_route_table_ids
   description = "The list of IDs of private route tables"
 }
 

@@ -185,3 +185,27 @@ variable "eks_single_az" {
   type        = bool
   default     = false
 }
+
+variable "create_vpc" {
+  description = "Specifies if new VPC be created, if not `vpc_id` and `subnet_ids` variables need to be provided"
+  type        = bool
+  default     = true
+}
+
+variable "vpc_id" {
+  description = "ID of existing VPC, only used when `create_vpc` is set to `false`"
+  type        = string
+  default     = ""
+}
+
+variable "subnet_ids" {
+  description = "List of IDs of existing subnets, only used when `create_vpc` is set to `false`"
+  type        = list(string)
+  default     = []
+}
+
+variable "private_subnet_ids" {
+  description = "List of IDs of existing private subnets, only used when `create_vpc` is set to `false`"
+  type        = list(string)
+  default     = []
+}
