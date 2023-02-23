@@ -3,37 +3,37 @@
 ############################
 
 output "vpc_name" {
-  value       = module.vpc[0] == null ? null : module.vpc[0].name
+  value       = try(module.vpc.name, null)
   description = "The name of the VPC"
 }
 
 output "vpc_id" {
-  value       = module.vpc[0] == null ? null : module.vpc[0].vpc_id
+  value       = try(module.vpc.vpc_id, null)
   description = "The VPC ID"
 }
 
 output "vpc_public_subnets_ids" {
-  value = module.vpc[0] == null ? null : module.vpc[0].public_subnets
+  value = try(module.vpc.public_subnets, null)
   description = "The list of public subnets IDs associated with the VPC"
 }
 
 output "vpc_private_subnets_ids" {
-  value       = module.vpc[0] == null ? null : module.vpc[0].private_subnets
+  value       = try(module.vpc.private_subnets, null)
   description = "The list of private subnets IDs associated with the VPC"
 }
 
 output "vpc_nats_ids" {
-  value       = module.vpc[0] == null ? null : module.vpc[0].nat_ids
+  value       = try(module.vpc.nat_ids, null)
   description = "The list of allocation ID for Elastic IPs"
 }
 
 output "vpc_public_route_table_ids" {
-  value       = module.vpc[0] == null ? null : module.vpc[0].public_route_table_ids
+  value       = try(module.vpc.public_route_table_ids, null)
   description = "The list of IDs of public route tables"
 }
 
 output "vpc_private_route_table_ids" {
-  value       = module.vpc[0] == null ? null : module.vpc[0].private_route_table_ids
+  value       = try(module.vpc.private_route_table_ids, null)
   description = "The list of IDs of private route tables"
 }
 
