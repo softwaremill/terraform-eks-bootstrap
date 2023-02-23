@@ -1,4 +1,5 @@
 module "vpc" {
+  count   = var.create_vpc ? 1 : 0
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 3.0"
 
@@ -30,6 +31,11 @@ module "vpc" {
   tags = local.tags
 }
 
+data "aws_vpc" "selected" {
+  count = var.create_vpc ? 0 : 1
+  id    = var.vpc_id
+}
+
 module "kubernetes_secrets_encryption_key" {
   source      = "./modules/encryption"
   org         = var.org
@@ -45,8 +51,8 @@ module "eks" {
   cluster_name    = var.eks_cluster_name
   cluster_version = var.eks_cluster_version
 
-  vpc_id     = module.vpc.vpc_id
-  subnet_ids = concat(module.vpc.public_subnets, module.vpc.private_subnets)
+  vpc_id     = var.create_vpc ? module.vpc[0].vpc_id : var.vpc_id
+  subnet_ids = var.create_vpc ? concat(module.vpc[0].public_subnets, module.vpc[0].private_subnets) : concat(var.public_subnet_ids, var.private_subnet_ids)
 
   cluster_endpoint_private_access = var.eks_cluster_endpoint_access.enable_private_access
   cluster_endpoint_public_access  = var.eks_cluster_endpoint_access.enable_public_access
