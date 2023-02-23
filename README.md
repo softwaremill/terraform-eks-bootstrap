@@ -18,8 +18,8 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.48.0 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.16.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.55.0 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.18.1 |
 
 ## Modules
 
@@ -37,12 +37,14 @@ No requirements.
 | [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_partition.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/partition) | data source |
+| [aws_vpc.selected](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_tags"></a> [additional\_tags](#input\_additional\_tags) | Additional tags to include | `map(string)` | `{}` | no |
+| <a name="input_create_vpc"></a> [create\_vpc](#input\_create\_vpc) | Specifies if new VPC be created, if not `vpc_id` and `subnet_ids` variables need to be provided | `bool` | `true` | no |
 | <a name="input_eks_additional_cluster_addons"></a> [eks\_additional\_cluster\_addons](#input\_eks\_additional\_cluster\_addons) | Map of additional cluster addon configurations to enable for the cluster. | `any` | `{}` | no |
 | <a name="input_eks_cluster_auth_role"></a> [eks\_cluster\_auth\_role](#input\_eks\_cluster\_auth\_role) | AWS roles with access permission to EKS cluster | <pre>list(object({<br>    rolearn : string<br>    username : string<br>    groups = list(string)<br>  }))</pre> | `[]` | no |
 | <a name="input_eks_cluster_auth_user"></a> [eks\_cluster\_auth\_user](#input\_eks\_cluster\_auth\_user) | AWS users with access permission to EKS cluster | <pre>list(object({<br>    userarn : string<br>    username : string<br>    groups = list(string)<br>  }))</pre> | `[]` | no |
@@ -61,8 +63,11 @@ No requirements.
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment name | `string` | n/a | yes |
 | <a name="input_logs_retention_days"></a> [logs\_retention\_days](#input\_logs\_retention\_days) | Log retention in days | `number` | `14` | no |
 | <a name="input_org"></a> [org](#input\_org) | Organization name - part of other resource names | `string` | `"terraform"` | no |
+| <a name="input_private_subnet_ids"></a> [private\_subnet\_ids](#input\_private\_subnet\_ids) | List of IDs of existing private subnets, only used when `create_vpc` is set to `false` | `list(string)` | `[]` | no |
+| <a name="input_public_subnet_ids"></a> [public\_subnet\_ids](#input\_public\_subnet\_ids) | List of IDs of existing public subnets, only used when `create_vpc` is set to `false` | `list(string)` | `[]` | no |
 | <a name="input_region"></a> [region](#input\_region) | n/a | `string` | `"eu-central-1"` | no |
 | <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | VPC CIDR address | `string` | `"10.0.0.0/16"` | no |
+| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of existing VPC, only used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_vpc_nat_setting"></a> [vpc\_nat\_setting](#input\_vpc\_nat\_setting) | Enable NAT Gateway | <pre>object({<br>    enable_nat_gateway : bool<br>    multi_az_nat_gateway : bool<br>  })</pre> | <pre>{<br>  "enable_nat_gateway": true,<br>  "multi_az_nat_gateway": false<br>}</pre> | no |
 
 ## Outputs
