@@ -198,14 +198,14 @@ variable "vpc_id" {
   default     = ""
 }
 
-variable "subnet_ids" {
-  description = "List of IDs of existing subnets, only used when `create_vpc` is set to `false`"
+variable "private_subnet_ids" {
+  description = "List of IDs of existing private subnets, only used when `create_vpc` is set to `false`"
   type        = list(string)
   default     = []
 }
 
-variable "private_subnet_ids" {
-  description = "List of IDs of existing private subnets, only used when `create_vpc` is set to `false`"
+variable "public_subnet_ids" {
+  description = "List of IDs of existing public subnets, only used when `create_vpc` is set to `false`"
   type        = list(string)
   default     = []
 }

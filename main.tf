@@ -52,7 +52,7 @@ module "eks" {
   cluster_version = var.eks_cluster_version
 
   vpc_id     = var.create_vpc ? module.vpc[0].vpc_id : var.vpc_id
-  subnet_ids = var.create_vpc ? concat(module.vpc[0].public_subnets, module.vpc[0].private_subnets) : var.subnet_ids
+  subnet_ids = var.create_vpc ? concat(module.vpc[0].public_subnets, module.vpc[0].private_subnets) : concat(var.public_subnet_ids, var.private_subnet_ids) 
 
   cluster_endpoint_private_access = var.eks_cluster_endpoint_access.enable_private_access
   cluster_endpoint_public_access  = var.eks_cluster_endpoint_access.enable_public_access
