@@ -186,6 +186,12 @@ variable "eks_single_az" {
   default     = false
 }
 
+variable "manage_aws_auth_configmap" {
+  description = "Should Terraform manage aws_auth ConfigMap used for setting up cluster access"
+  type        = bool
+  default     = true
+}
+
 variable "create_vpc" {
   description = "Specifies if new VPC be created, if not `vpc_id` and `subnet_ids` variables need to be provided"
   type        = bool
