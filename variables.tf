@@ -192,3 +192,26 @@ variable "manage_aws_auth_configmap" {
   default     = true
 }
 
+variable "create_vpc" {
+  description = "Specifies if new VPC be created, if not `vpc_id` and `subnet_ids` variables need to be provided"
+  type        = bool
+  default     = true
+}
+
+variable "vpc_id" {
+  description = "ID of existing VPC, only used when `create_vpc` is set to `false`"
+  type        = string
+  default     = ""
+}
+
+variable "private_subnet_ids" {
+  description = "List of IDs of existing private subnets, only used when `create_vpc` is set to `false`"
+  type        = list(string)
+  default     = []
+}
+
+variable "public_subnet_ids" {
+  description = "List of IDs of existing public subnets, only used when `create_vpc` is set to `false`"
+  type        = list(string)
+  default     = []
+}
