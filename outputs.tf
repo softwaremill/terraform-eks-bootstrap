@@ -82,3 +82,8 @@ output "kubernetes_secrets_encryption_key_arn" {
   value       = module.kubernetes_secrets_encryption_key.kubernetes_secrets_encryption_key_arn
   description = "Encryption key ARN created for encryption of Kubernetes secrets."
 }
+
+output "kubernetes_secrets_encryption_alias_arn" {
+  value       = module.kubernetes_secrets_encryption_key.kubernetes_secrets_encryption_alias_arn
+  description = "Encryption KMS key alias ARN. Key is used for encryption of Kubernetes secrets."
+}
