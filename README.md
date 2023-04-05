@@ -18,8 +18,8 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.56.0 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.18.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.61.0 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.19.0 |
 
 ## Modules
 
@@ -82,6 +82,8 @@ No requirements.
 | <a name="output_eks_cluster_oidc_issuer_url"></a> [eks\_cluster\_oidc\_issuer\_url](#output\_eks\_cluster\_oidc\_issuer\_url) | The URL on the EKS cluster OIDC Issuer |
 | <a name="output_eks_cluster_primary_security_group_id"></a> [eks\_cluster\_primary\_security\_group\_id](#output\_eks\_cluster\_primary\_security\_group\_id) | The cluster primary security group ID created by the EKS cluster |
 | <a name="output_eks_cluster_version"></a> [eks\_cluster\_version](#output\_eks\_cluster\_version) | The Kubernetes server version for the EKS cluster. |
+| <a name="output_kubernetes_secrets_encryption_alias_arn"></a> [kubernetes\_secrets\_encryption\_alias\_arn](#output\_kubernetes\_secrets\_encryption\_alias\_arn) | Encryption KMS key alias ARN. Key is used for encryption of Kubernetes secrets. |
+| <a name="output_kubernetes_secrets_encryption_key_arn"></a> [kubernetes\_secrets\_encryption\_key\_arn](#output\_kubernetes\_secrets\_encryption\_key\_arn) | Encryption key ARN created for encryption of Kubernetes secrets. |
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | The VPC ID |
 | <a name="output_vpc_name"></a> [vpc\_name](#output\_vpc\_name) | The name of the VPC |
 | <a name="output_vpc_nats_ids"></a> [vpc\_nats\_ids](#output\_vpc\_nats\_ids) | The list of allocation ID for Elastic IPs |
