@@ -18,8 +18,8 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.61.0 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.19.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.4.0 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.21.1 |
 
 ## Modules
 
@@ -27,7 +27,7 @@ No requirements.
 |------|--------|---------|
 | <a name="module_eks"></a> [eks](#module\_eks) | terraform-aws-modules/eks/aws | ~> 18.0 |
 | <a name="module_kubernetes_secrets_encryption_key"></a> [kubernetes\_secrets\_encryption\_key](#module\_kubernetes\_secrets\_encryption\_key) | ./modules/encryption | n/a |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | ~> 3.0 |
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | v4.0.2 |
 
 ## Resources
 
