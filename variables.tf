@@ -70,7 +70,7 @@ variable "eks_cluster_name" {
 variable "eks_cluster_version" {
   description = "Kubernetes cluster version"
   type        = string
-  default     = "1.22"
+  default     = "1.26"
 }
 
 variable "eks_cluster_log_types" {
@@ -145,9 +145,18 @@ variable "eks_default_cluster_addons" {
   default = {
     coredns = {
       resolve_conflicts = "OVERWRITE"
+      preserve          = true
+      most_recent       = true
     }
     vpc-cni = {
       resolve_conflicts = "OVERWRITE"
+      preserve          = true
+      most_recent       = true
+    }
+    kube-proxy = {
+      resolve_conflicts = "OVERWRITE"
+      preserve          = true
+      most_recent       = true
     }
   }
 }
@@ -214,4 +223,16 @@ variable "public_subnet_ids" {
   description = "List of IDs of existing public subnets, only used when `create_vpc` is set to `false`"
   type        = list(string)
   default     = []
+}
+
+variable "enable_ebs_csi_driver" {
+  description = "Specifies if enable the EBS/CSI driver"
+  type        = bool
+  default     = true
+}
+
+variable "eks_create" {
+  description = "Specifies if actually create the EKS cluster"
+  type        = bool
+  default     = true
 }

@@ -21,4 +21,25 @@ locals {
   ###############
   storage_classes_names = [for sc in toset(var.eks_storage_classes) : sc.name]
   storage_classes       = zipmap(local.storage_classes_names, tolist(toset(var.eks_storage_classes)))
+
+  ###############
+  # Add-ons
+  ###############
+  ebs_csi_addon = {
+    aws-ebs-csi-driver = {
+      resolve_conflicts        = "OVERWRITE"
+      preserve                 = true
+      most_recent              = true
+      service_account_role_arn = module.ebs_csi_irsa_role.0.iam_role_arn
+    }
+  }
+
+  cluster_addons = var.enable_ebs_csi_driver ? merge(
+    var.eks_default_cluster_addons,
+    var.eks_additional_cluster_addons,
+    local.ebs_csi_addon
+    ) : merge(
+    var.eks_default_cluster_addons,
+    var.eks_additional_cluster_addons
+  )
 }

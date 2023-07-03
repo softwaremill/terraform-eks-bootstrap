@@ -49,9 +49,13 @@ output "eks_cluster_arn" {
 
 output "eks_cluster_id" {
   value       = module.eks.cluster_id
-  description = "The name of the cluster"
+  description = "The id of the cluster"
 }
 
+output "eks_cluster_name" {
+  value       = module.eks.cluster_name
+  description = "The name of the cluster"
+}
 output "eks_cluster_version" {
   value       = module.eks.cluster_version
   description = "The Kubernetes server version for the EKS cluster."
@@ -76,14 +80,4 @@ output "eks_cluster_endpoint" {
 output "eks_cluster_certificate_authority_data" {
   value       = module.eks.cluster_certificate_authority_data
   description = "Base64 encoded certificate data required to communicate with the cluster"
-}
-
-output "kubernetes_secrets_encryption_key_arn" {
-  value       = module.kubernetes_secrets_encryption_key[0].kubernetes_secrets_encryption_key_arn
-  description = "Encryption key ARN created for encryption of Kubernetes secrets."
-}
-
-output "kubernetes_secrets_encryption_alias_arn" {
-  value       = module.kubernetes_secrets_encryption_key[0].kubernetes_secrets_encryption_alias_arn
-  description = "Encryption KMS key alias ARN. Key is used for encryption of Kubernetes secrets."
 }
