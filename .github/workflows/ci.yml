@@ -27,8 +27,30 @@ jobs:
       - name: Terraform Format
         run: terraform fmt -check -recursive -diff
       - name: Render terraform docs and push changes back to PR
-        uses: terraform-docs/gh-actions@main
+        uses: terraform-docs/gh-actions@v1
         with:
           config-file: .terraform-docs.yml
           working-dir: .
           git-push: "true"
+  terratest:
+    needs: ["terraform"]
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup golang
+        uses: actions/setup-go@v4
+        with:
+          cache-dependency-path: test/go.sum
+          go-version-file: test/go.mod
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::317104979423:role/terraform-20230706095733502200000001
+          aws-region: eu-west-1
+      - name: Run tests
+        run: go test -v -timeout 30m
+        working-directory: test
