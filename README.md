@@ -18,7 +18,7 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.6.2 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.7.0 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.21.1 |
 
 ## Modules
