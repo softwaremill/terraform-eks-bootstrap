@@ -1,7 +1,7 @@
 module "vpc" {
   count   = var.create_vpc ? 1 : 0
   source  = "terraform-aws-modules/vpc/aws"
-  version = "v4.0.2"
+  version = "5.0.0"
 
   name = local.vpc_name
   cidr = var.vpc_cidr
@@ -36,17 +36,10 @@ data "aws_vpc" "selected" {
   id    = var.vpc_id
 }
 
-module "kubernetes_secrets_encryption_key" {
-  source      = "./modules/encryption"
-  org         = var.org
-  environment = var.environment
-  tags        = local.tags
-  count       = var.eks_enable_secret_encryption ? 1 : 0
-}
-
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "~> 18.0"
+  version = "19.15.3"
+  create  = var.eks_create
 
   cluster_name    = var.eks_cluster_name
   cluster_version = var.eks_cluster_version
@@ -62,13 +55,6 @@ module "eks" {
   cluster_addons                  = merge(var.eks_default_cluster_addons, var.eks_additional_cluster_addons)
 
 
-  cluster_encryption_config = var.eks_enable_secret_encryption ? [
-    {
-      provider_key_arn = module.kubernetes_secrets_encryption_key[0].kubernetes_secrets_encryption_key_arn
-      resources        = ["secrets"]
-  }] : []
-
-
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = local.eks_managed_node_group_defaults
   eks_managed_node_groups         = var.eks_cluster_node_groups
@@ -81,23 +67,17 @@ module "eks" {
   aws_auth_roles            = var.eks_cluster_auth_role
   aws_auth_users            = var.eks_cluster_auth_user
 
-
   tags = local.tags
 
 }
 
 resource "kubernetes_storage_class" "storage_class" {
-
   for_each = local.storage_classes
-
   metadata {
     name = lookup(each.value, "name", "")
   }
-
   storage_provisioner = lookup(each.value, "storage_class_provisioner", "")
-
-  parameters = each.value.parameters
-
+  parameters          = each.value.parameters
   volume_binding_mode = lookup(each.value, "volume_binding_mode", "WaitForFirstConsumer")
   reclaim_policy      = lookup(each.value, "reclaim_policy", "Delete")
 }
