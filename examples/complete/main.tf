@@ -8,7 +8,6 @@ provider "kubernetes" {
     args        = ["eks", "get-token", "--cluster-name", module.complete.eks_cluster_name]
   }
 }
-
 provider "helm" {
   kubernetes {
     host                   = module.complete.eks_cluster_endpoint

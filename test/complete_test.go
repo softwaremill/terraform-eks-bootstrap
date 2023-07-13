@@ -151,6 +151,7 @@ func TestComplete(t *testing.T) {
 		Vars: map[string]interface{}{
 			"region":       awsRegion,
 			"names_suffix": randId,
+			"enable_aws_load_balancer_controller": true,
 		},
 	})
 
