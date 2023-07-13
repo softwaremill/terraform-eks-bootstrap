@@ -236,3 +236,33 @@ variable "eks_create" {
   type        = bool
   default     = true
 }
+
+variable "enable_certmanager" {
+  description = "Specifies if cert-manager should be enabled"
+  type        = bool
+  default     = false
+}
+
+variable "enable_cluster_autoscaler" {
+  description = "Specifies if Cluster Autoscaler should be enabled"
+  type        = bool
+  default     = false
+}
+
+variable "enable_external_dns" {
+  description = "Specifies if External DNS should be enabled"
+  type        = bool
+  default     = false
+}
+
+variable "enable_load_balancer_controller" {
+  description = "Specifies if Load Balancer Controller should be enabled"
+  type        = bool
+  default     = true
+}
+
+variable "enable_velero" {
+  description = "Specifies if Velero should be enabled"
+  type        = bool
+  default     = false
+}
