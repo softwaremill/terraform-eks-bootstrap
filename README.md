@@ -19,12 +19,14 @@ No requirements.
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 5.7.0 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.21.1 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.10.1 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.22.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_aws_load_balancer_controller_role"></a> [aws\_load\_balancer\_controller\_role](#module\_aws\_load\_balancer\_controller\_role) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.24.0 |
 | <a name="module_ebs_csi_irsa_role"></a> [ebs\_csi\_irsa\_role](#module\_ebs\_csi\_irsa\_role) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.24.0 |
 | <a name="module_eks"></a> [eks](#module\_eks) | terraform-aws-modules/eks/aws | 19.15.3 |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | 5.0.0 |
@@ -33,6 +35,7 @@ No requirements.
 
 | Name | Type |
 |------|------|
+| [helm_release.aws_load_balancer_controller](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [kubernetes_storage_class.storage_class](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/storage_class) | resource |
 | [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
@@ -60,8 +63,13 @@ No requirements.
 | <a name="input_eks_enable_secret_encryption"></a> [eks\_enable\_secret\_encryption](#input\_eks\_enable\_secret\_encryption) | Should KMS key to encrypt kubernetes secrets be generated | `bool` | `true` | no |
 | <a name="input_eks_single_az"></a> [eks\_single\_az](#input\_eks\_single\_az) | Specifies if all node's should be deployed in the same AZ | `bool` | `false` | no |
 | <a name="input_eks_storage_classes"></a> [eks\_storage\_classes](#input\_eks\_storage\_classes) | EBS storage class with custom parameters | <pre>list(object({<br>    name                      = string<br>    storage_class_provisioner = string<br>    parameters                = optional(map(string))<br>    volume_binding_mode       = optional(string)<br>    reclaim_policy            = optional(string)<br><br>    }<br>  ))</pre> | `[]` | no |
+| <a name="input_enable_aws_load_balancer_controller"></a> [enable\_aws\_load\_balancer\_controller](#input\_enable\_aws\_load\_balancer\_controller) | Specifies if Load Balancer Controller should be enabled | `bool` | `false` | no |
 | <a name="input_enable_bastion"></a> [enable\_bastion](#input\_enable\_bastion) | True if bastion host should be created | `bool` | `false` | no |
+| <a name="input_enable_certmanager"></a> [enable\_certmanager](#input\_enable\_certmanager) | Specifies if cert-manager should be enabled | `bool` | `false` | no |
+| <a name="input_enable_cluster_autoscaler"></a> [enable\_cluster\_autoscaler](#input\_enable\_cluster\_autoscaler) | Specifies if Cluster Autoscaler should be enabled | `bool` | `false` | no |
 | <a name="input_enable_ebs_csi_driver"></a> [enable\_ebs\_csi\_driver](#input\_enable\_ebs\_csi\_driver) | Specifies if enable the EBS/CSI driver | `bool` | `true` | no |
+| <a name="input_enable_external_dns"></a> [enable\_external\_dns](#input\_enable\_external\_dns) | Specifies if External DNS should be enabled | `bool` | `false` | no |
+| <a name="input_enable_velero"></a> [enable\_velero](#input\_enable\_velero) | Specifies if Velero should be enabled | `bool` | `false` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment name | `string` | n/a | yes |
 | <a name="input_logs_retention_days"></a> [logs\_retention\_days](#input\_logs\_retention\_days) | Log retention in days | `number` | `14` | no |
 | <a name="input_manage_aws_auth_configmap"></a> [manage\_aws\_auth\_configmap](#input\_manage\_aws\_auth\_configmap) | Should Terraform manage aws\_auth ConfigMap used for setting up cluster access | `bool` | `true` | no |
