@@ -258,7 +258,7 @@ variable "enable_external_dns" {
 variable "enable_aws_load_balancer_controller" {
   description = "Specifies if Load Balancer Controller should be enabled"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "enable_velero" {
