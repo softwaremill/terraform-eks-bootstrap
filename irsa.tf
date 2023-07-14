@@ -25,5 +25,5 @@ module "aws_load_balancer_controller_role" {
     }
   }
   tags  = local.tags
-  count = var.enable_ebs_csi_driver ? 1 : 0
+  count = var.enable_aws_load_balancer_controller ? 1 : 0
 }
