@@ -1,5 +1,6 @@
 resource "helm_release" "aws_load_balancer_controller" {
   count      = var.enable_aws_load_balancer_controller ? 1 : 0
+  depends_on = [module.eks]
   name       = "aws-load-balancer-controller"
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"
