@@ -8,6 +8,18 @@ provider "kubernetes" {
     args        = ["eks", "get-token", "--cluster-name", module.complete.eks_cluster_name]
   }
 }
+provider "helm" {
+  kubernetes {
+    host                   = module.complete.eks_cluster_endpoint
+    cluster_ca_certificate = base64decode(module.complete.eks_cluster_certificate_authority_data)
+    exec {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      command     = "aws"
+      args        = ["eks", "get-token", "--cluster-name", module.complete.eks_cluster_name]
+    }
+  }
+}
+
 module "complete" {
   source           = "../.."
   environment      = "example-${var.names_suffix}"
