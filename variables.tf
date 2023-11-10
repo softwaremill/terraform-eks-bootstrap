@@ -204,7 +204,7 @@ variable "manage_aws_auth_configmap" {
 variable "create_aws_auth_configmap" {
   description = "Should Terraform create aws_auth ConfigMap used for setting up cluster access"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "create_vpc" {
