@@ -18,8 +18,8 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.25.0 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.23.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.32.1 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.25.2 |
 
 ## Modules
 
@@ -83,6 +83,7 @@ No requirements.
 | <a name="output_eks_cluster_endpoint"></a> [eks\_cluster\_endpoint](#output\_eks\_cluster\_endpoint) | Endpoint for your Kubernetes API server |
 | <a name="output_eks_cluster_id"></a> [eks\_cluster\_id](#output\_eks\_cluster\_id) | The id of the cluster |
 | <a name="output_eks_cluster_name"></a> [eks\_cluster\_name](#output\_eks\_cluster\_name) | The name of the cluster |
+| <a name="output_eks_cluster_oidc_issuer_arn"></a> [eks\_cluster\_oidc\_issuer\_arn](#output\_eks\_cluster\_oidc\_issuer\_arn) | The ARN on the EKS cluster OIDC provider |
 | <a name="output_eks_cluster_oidc_issuer_url"></a> [eks\_cluster\_oidc\_issuer\_url](#output\_eks\_cluster\_oidc\_issuer\_url) | The URL on the EKS cluster OIDC Issuer |
 | <a name="output_eks_cluster_primary_security_group_id"></a> [eks\_cluster\_primary\_security\_group\_id](#output\_eks\_cluster\_primary\_security\_group\_id) | The cluster primary security group ID created by the EKS cluster |
 | <a name="output_eks_cluster_version"></a> [eks\_cluster\_version](#output\_eks\_cluster\_version) | The Kubernetes server version for the EKS cluster. |
