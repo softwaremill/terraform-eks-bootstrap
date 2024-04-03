@@ -1,10 +1,12 @@
 module github.com/softwaremill/terraform-eks-bootstrap
 
-go 1.20
+go 1.21
+
+toolchain go1.22.1
 
 require (
 	github.com/aws/aws-sdk-go v1.44.213
-	github.com/gruntwork-io/terratest v0.43.6
+	github.com/gruntwork-io/terratest v0.46.6
 	github.com/stretchr/testify v1.8.1
 	k8s.io/api v0.27.2
 	k8s.io/apimachinery v0.27.2
