@@ -4,6 +4,10 @@ import (
 	"context"
 	"encoding/base64"
 	"fmt"
+	"strings"
+	"testing"
+	"time"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/eks"
@@ -16,14 +20,8 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
-	"k8s.io/client-go/tools/clientcmd"
-	clientcmdapi "k8s.io/client-go/tools/clientcmd/api"
 	"k8s.io/utils/pointer"
-	"os"
 	"sigs.k8s.io/aws-iam-authenticator/pkg/token"
-	"strings"
-	"testing"
-	"time"
 )
 
 func createRestConfig(eks *eks.Cluster) (*rest.Config, error) {
@@ -50,44 +48,6 @@ func createRestConfig(eks *eks.Cluster) (*rest.Config, error) {
 	return &restConfig, nil
 }
 
-func createKubeconfig(restConfig *rest.Config) (*os.File, error) {
-	file, err := os.CreateTemp("/var/tmp", "test-kubeconfig")
-	if err != nil {
-		return nil, err
-	}
-
-	clusters := make(map[string]*clientcmdapi.Cluster)
-	clusters["default-cluster"] = &clientcmdapi.Cluster{
-		Server:                   restConfig.Host,
-		CertificateAuthorityData: restConfig.TLSClientConfig.CAData,
-	}
-
-	contexts := make(map[string]*clientcmdapi.Context)
-	contexts["default-context"] = &clientcmdapi.Context{
-		Cluster:   "default-cluster",
-		Namespace: "default",
-		AuthInfo:  "default",
-	}
-
-	authinfos := make(map[string]*clientcmdapi.AuthInfo)
-	authinfos["default"] = &clientcmdapi.AuthInfo{
-		Token: restConfig.BearerToken,
-	}
-
-	clientConfig := clientcmdapi.Config{
-		Kind:           "Config",
-		APIVersion:     "v1",
-		Clusters:       clusters,
-		Contexts:       contexts,
-		CurrentContext: "default-context",
-		AuthInfos:      authinfos,
-	}
-	err = clientcmd.WriteToFile(clientConfig, file.Name())
-	if err != nil {
-		return nil, err
-	}
-	return file, nil
-}
 func createK8sClientset(restConfig *rest.Config) (*kubernetes.Clientset, error) {
 	clientSet, err := kubernetes.NewForConfig(restConfig)
 	if err != nil {
@@ -181,11 +141,9 @@ func TestComplete(t *testing.T) {
 	k8sClientSet, err := createK8sClientset(restConfig)
 	assert.NoError(t, err)
 
-	kubeConfig, err := createKubeconfig(restConfig)
-	defer os.Remove(kubeConfig.Name())
 	assert.NoError(t, err)
 
-	kubectlOptions := k8s.NewKubectlOptions("", kubeConfig.Name(), "default")
+	kubectlOptions := k8s.NewKubectlOptionsWithRestConfig(restConfig, "default")
 
 	deployment, err := createTestDeployment(k8sClientSet, deplName)
 	assert.NoError(t, err)
