@@ -139,6 +139,12 @@ variable "eks_cluster_auth_role" {
   default = []
 }
 
+variable "eks_create_node_security_group" {
+  description = "Should we create a node security group?"
+  type        = bool
+  default     = true
+}
+
 variable "eks_default_cluster_addons" {
   description = "Map of default cluster addon configurations to enable for the cluster."
   type        = any
