@@ -18,8 +18,8 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.42.0 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.27.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.80.0 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.34.0 |
 
 ## Modules
 
@@ -47,20 +47,21 @@ No requirements.
 | <a name="input_create_aws_auth_configmap"></a> [create\_aws\_auth\_configmap](#input\_create\_aws\_auth\_configmap) | Should Terraform create aws\_auth ConfigMap used for setting up cluster access | `bool` | `false` | no |
 | <a name="input_create_vpc"></a> [create\_vpc](#input\_create\_vpc) | Specifies if new VPC be created, if not `vpc_id` and `subnet_ids` variables need to be provided | `bool` | `true` | no |
 | <a name="input_eks_additional_cluster_addons"></a> [eks\_additional\_cluster\_addons](#input\_eks\_additional\_cluster\_addons) | Map of additional cluster addon configurations to enable for the cluster. | `any` | `{}` | no |
-| <a name="input_eks_cluster_auth_role"></a> [eks\_cluster\_auth\_role](#input\_eks\_cluster\_auth\_role) | AWS roles with access permission to EKS cluster | <pre>list(object({<br>    rolearn : string<br>    username : string<br>    groups = list(string)<br>  }))</pre> | `[]` | no |
-| <a name="input_eks_cluster_auth_user"></a> [eks\_cluster\_auth\_user](#input\_eks\_cluster\_auth\_user) | AWS users with access permission to EKS cluster | <pre>list(object({<br>    userarn : string<br>    username : string<br>    groups = list(string)<br>  }))</pre> | `[]` | no |
-| <a name="input_eks_cluster_endpoint_access"></a> [eks\_cluster\_endpoint\_access](#input\_eks\_cluster\_endpoint\_access) | EKS managed node group default configurations | <pre>object({<br>    enable_public_access : bool<br>    enable_private_access : bool<br>  })</pre> | <pre>{<br>  "enable_private_access": false,<br>  "enable_public_access": true<br>}</pre> | no |
+| <a name="input_eks_cluster_auth_role"></a> [eks\_cluster\_auth\_role](#input\_eks\_cluster\_auth\_role) | AWS roles with access permission to EKS cluster | <pre>list(object({<br/>    rolearn : string<br/>    username : string<br/>    groups = list(string)<br/>  }))</pre> | `[]` | no |
+| <a name="input_eks_cluster_auth_user"></a> [eks\_cluster\_auth\_user](#input\_eks\_cluster\_auth\_user) | AWS users with access permission to EKS cluster | <pre>list(object({<br/>    userarn : string<br/>    username : string<br/>    groups = list(string)<br/>  }))</pre> | `[]` | no |
+| <a name="input_eks_cluster_endpoint_access"></a> [eks\_cluster\_endpoint\_access](#input\_eks\_cluster\_endpoint\_access) | EKS managed node group default configurations | <pre>object({<br/>    enable_public_access : bool<br/>    enable_private_access : bool<br/>  })</pre> | <pre>{<br/>  "enable_private_access": false,<br/>  "enable_public_access": true<br/>}</pre> | no |
 | <a name="input_eks_cluster_fargate_profiles"></a> [eks\_cluster\_fargate\_profiles](#input\_eks\_cluster\_fargate\_profiles) | EKS Fargate profile object | `map(object({}))` | `{}` | no |
-| <a name="input_eks_cluster_log_types"></a> [eks\_cluster\_log\_types](#input\_eks\_cluster\_log\_types) | A list of the desired control plane logs to enable | `list(string)` | <pre>[<br>  "api",<br>  "audit",<br>  "authenticator"<br>]</pre> | no |
+| <a name="input_eks_cluster_log_types"></a> [eks\_cluster\_log\_types](#input\_eks\_cluster\_log\_types) | A list of the desired control plane logs to enable | `list(string)` | <pre>[<br/>  "api",<br/>  "audit",<br/>  "authenticator"<br/>]</pre> | no |
 | <a name="input_eks_cluster_name"></a> [eks\_cluster\_name](#input\_eks\_cluster\_name) | Name of the Kubernetes cluster | `string` | `"eks-cluster"` | no |
 | <a name="input_eks_cluster_node_groups"></a> [eks\_cluster\_node\_groups](#input\_eks\_cluster\_node\_groups) | EKS managed additional node group | `any` | `{}` | no |
-| <a name="input_eks_cluster_node_groups_default_configuration"></a> [eks\_cluster\_node\_groups\_default\_configuration](#input\_eks\_cluster\_node\_groups\_default\_configuration) | EKS managed node group default configurations | `any` | <pre>{<br>  "attach_cluster_primary_security_group": true,<br>  "desired_size": 3,<br>  "disk_size": 40,<br>  "instance_types": [<br>    "m5.large"<br>  ],<br>  "labels": {<br>    "node-group": "default"<br>  },<br>  "max_size": 5,<br>  "min_size": 1<br>}</pre> | no |
+| <a name="input_eks_cluster_node_groups_default_configuration"></a> [eks\_cluster\_node\_groups\_default\_configuration](#input\_eks\_cluster\_node\_groups\_default\_configuration) | EKS managed node group default configurations | `any` | <pre>{<br/>  "attach_cluster_primary_security_group": true,<br/>  "desired_size": 3,<br/>  "disk_size": 40,<br/>  "instance_types": [<br/>    "m5.large"<br/>  ],<br/>  "labels": {<br/>    "node-group": "default"<br/>  },<br/>  "max_size": 5,<br/>  "min_size": 1<br/>}</pre> | no |
 | <a name="input_eks_cluster_version"></a> [eks\_cluster\_version](#input\_eks\_cluster\_version) | Kubernetes cluster version | `string` | `"1.26"` | no |
 | <a name="input_eks_create"></a> [eks\_create](#input\_eks\_create) | Specifies if actually create the EKS cluster | `bool` | `true` | no |
-| <a name="input_eks_default_cluster_addons"></a> [eks\_default\_cluster\_addons](#input\_eks\_default\_cluster\_addons) | Map of default cluster addon configurations to enable for the cluster. | `any` | <pre>{<br>  "coredns": {<br>    "most_recent": true,<br>    "preserve": true,<br>    "resolve_conflicts": "OVERWRITE"<br>  },<br>  "kube-proxy": {<br>    "most_recent": true,<br>    "preserve": true,<br>    "resolve_conflicts": "OVERWRITE"<br>  },<br>  "vpc-cni": {<br>    "most_recent": true,<br>    "preserve": true,<br>    "resolve_conflicts": "OVERWRITE"<br>  }<br>}</pre> | no |
+| <a name="input_eks_default_cluster_addons"></a> [eks\_default\_cluster\_addons](#input\_eks\_default\_cluster\_addons) | Map of default cluster addon configurations to enable for the cluster. | `any` | <pre>{<br/>  "coredns": {<br/>    "most_recent": true,<br/>    "preserve": true,<br/>    "resolve_conflicts": "OVERWRITE"<br/>  },<br/>  "kube-proxy": {<br/>    "most_recent": true,<br/>    "preserve": true,<br/>    "resolve_conflicts": "OVERWRITE"<br/>  },<br/>  "vpc-cni": {<br/>    "most_recent": true,<br/>    "preserve": true,<br/>    "resolve_conflicts": "OVERWRITE"<br/>  }<br/>}</pre> | no |
 | <a name="input_eks_enable_secret_encryption"></a> [eks\_enable\_secret\_encryption](#input\_eks\_enable\_secret\_encryption) | Should KMS key to encrypt kubernetes secrets be generated | `bool` | `true` | no |
+| <a name="input_eks_node_security_group_tags"></a> [eks\_node\_security\_group\_tags](#input\_eks\_node\_security\_group\_tags) | Map of tags for eks node sg | `map(string)` | `{}` | no |
 | <a name="input_eks_single_az"></a> [eks\_single\_az](#input\_eks\_single\_az) | Specifies if all node's should be deployed in the same AZ | `bool` | `false` | no |
-| <a name="input_eks_storage_classes"></a> [eks\_storage\_classes](#input\_eks\_storage\_classes) | EBS storage class with custom parameters | <pre>list(object({<br>    name                      = string<br>    storage_class_provisioner = string<br>    parameters                = optional(map(string))<br>    volume_binding_mode       = optional(string)<br>    reclaim_policy            = optional(string)<br><br>    }<br>  ))</pre> | `[]` | no |
+| <a name="input_eks_storage_classes"></a> [eks\_storage\_classes](#input\_eks\_storage\_classes) | EBS storage class with custom parameters | <pre>list(object({<br/>    name                      = string<br/>    storage_class_provisioner = string<br/>    parameters                = optional(map(string))<br/>    volume_binding_mode       = optional(string)<br/>    reclaim_policy            = optional(string)<br/><br/>    }<br/>  ))</pre> | `[]` | no |
 | <a name="input_enable_bastion"></a> [enable\_bastion](#input\_enable\_bastion) | True if bastion host should be created | `bool` | `false` | no |
 | <a name="input_enable_ebs_csi_driver"></a> [enable\_ebs\_csi\_driver](#input\_enable\_ebs\_csi\_driver) | Specifies if enable the EBS/CSI driver | `bool` | `true` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment name | `string` | n/a | yes |
@@ -72,7 +73,7 @@ No requirements.
 | <a name="input_region"></a> [region](#input\_region) | n/a | `string` | `"eu-central-1"` | no |
 | <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | VPC CIDR address | `string` | `"10.0.0.0/16"` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of existing VPC, only used when `create_vpc` is set to `false` | `string` | `""` | no |
-| <a name="input_vpc_nat_setting"></a> [vpc\_nat\_setting](#input\_vpc\_nat\_setting) | Enable NAT Gateway | <pre>object({<br>    enable_nat_gateway : bool<br>    multi_az_nat_gateway : bool<br>  })</pre> | <pre>{<br>  "enable_nat_gateway": true,<br>  "multi_az_nat_gateway": false<br>}</pre> | no |
+| <a name="input_vpc_nat_setting"></a> [vpc\_nat\_setting](#input\_vpc\_nat\_setting) | Enable NAT Gateway | <pre>object({<br/>    enable_nat_gateway : bool<br/>    multi_az_nat_gateway : bool<br/>  })</pre> | <pre>{<br/>  "enable_nat_gateway": true,<br/>  "multi_az_nat_gateway": false<br/>}</pre> | no |
 
 ## Outputs
 
