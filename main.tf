@@ -47,12 +47,13 @@ module "eks" {
   vpc_id     = var.create_vpc ? module.vpc[0].vpc_id : var.vpc_id
   subnet_ids = var.create_vpc ? concat(module.vpc[0].public_subnets, module.vpc[0].private_subnets) : concat(var.public_subnet_ids, var.private_subnet_ids)
 
-  cluster_endpoint_private_access            = var.eks_cluster_endpoint_access.enable_private_access
-  cluster_endpoint_public_access             = var.eks_cluster_endpoint_access.enable_public_access
-  create_cluster_security_group              = true
-  create_node_security_group                 = var.eks_create_node_security_group
-  cluster_enabled_log_types                  = var.eks_cluster_log_types
-  cluster_addons                             = merge(var.eks_default_cluster_addons, var.eks_additional_cluster_addons)
+  cluster_endpoint_private_access = var.eks_cluster_endpoint_access.enable_private_access
+  cluster_endpoint_public_access  = var.eks_cluster_endpoint_access.enable_public_access
+  create_cluster_security_group   = true
+  create_node_security_group      = true
+  node_security_group_tags        = var.eks_node_security_group_tags
+  cluster_enabled_log_types       = var.eks_cluster_log_types
+  cluster_addons                  = merge(var.eks_default_cluster_addons, var.eks_additional_cluster_addons)
 
 
   # EKS Managed Node Group(s)
