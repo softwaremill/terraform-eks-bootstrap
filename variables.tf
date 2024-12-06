@@ -169,6 +169,12 @@ variable "eks_additional_cluster_addons" {
 
 }
 
+variable "eks_node_security_group_tags" {
+  description = "Map of tags for eks node sg"
+  type        = map(string)
+  default     = {}
+}
+
 variable "eks_storage_classes" {
   description = "EBS storage class with custom parameters"
   type = list(object({

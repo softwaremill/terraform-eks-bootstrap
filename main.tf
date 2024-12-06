@@ -51,6 +51,7 @@ module "eks" {
   cluster_endpoint_public_access  = var.eks_cluster_endpoint_access.enable_public_access
   create_cluster_security_group   = true
   create_node_security_group      = true
+  node_security_group_tags        = var.eks_node_security_group_tags
   cluster_enabled_log_types       = var.eks_cluster_log_types
   cluster_addons                  = merge(var.eks_default_cluster_addons, var.eks_additional_cluster_addons)
 
