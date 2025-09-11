@@ -67,7 +67,7 @@ module "eks" {
   create_kms_key         = var.eks_create_kms_key
   kms_key_administrators = var.eks_kms_key_administrators
   kms_key_owners         = var.eks_kms_key_owners
-  ksm_key_service_users  = var.eks_kms_key_service_users
+  kms_key_service_users  = var.eks_kms_key_service_users
   kms_key_users          = var.eks_kms_key_users
 
   # aws-auth configmap
