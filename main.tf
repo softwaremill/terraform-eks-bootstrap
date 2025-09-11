@@ -63,6 +63,13 @@ module "eks" {
   # Fargate Profile(s)
   fargate_profiles = var.eks_cluster_fargate_profiles
 
+  # KMS
+  create_kms_key         = var.eks_create_kms_key
+  kms_key_administrators = var.eks_kms_key_administrators
+  kms_key_owners         = var.eks_kms_key_owners
+  ksm_key_service_users  = var.eks_kms_key_service_users
+  kms_key_users          = var.eks_kms_key_users
+
   # aws-auth configmap
   manage_aws_auth_configmap = var.manage_aws_auth_configmap
   create_aws_auth_configmap = var.create_aws_auth_configmap

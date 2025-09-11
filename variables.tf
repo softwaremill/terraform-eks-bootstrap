@@ -189,10 +189,40 @@ variable "eks_storage_classes" {
   default = []
 }
 
-variable "eks_enable_secret_encryption" {
+variable "eks_create_kms_key" {
   description = "Should KMS key to encrypt kubernetes secrets be generated"
   type        = bool
   default     = true
+}
+
+variable "eks_kms_key_administrators" {
+  description = "List of ARNs of users/roles that should have administrator access to the KMS key"
+  type        = list(string)
+  default     = []
+}
+
+variable "eks_kms_key_enable_default_policy" {
+  description = "Should default KMS key policy be created"
+  type        = bool
+  default     = false
+}
+
+variable "eks_kms_key_owners" {
+  description = "List of ARNs of users/roles that should have owner access to the KMS key"
+  type        = list(string)
+  default     = []
+}
+
+variable "eks_kms_key_service_users" {
+  description = "A list of IAM ARNs for key service users"
+  type        = list(string)
+  default     = []
+}
+
+variable "eks_kms_key_users" {
+  description = "A list of IAM ARNs for key users"
+  type        = list(string)
+  default     = []
 }
 
 variable "eks_single_az" {
