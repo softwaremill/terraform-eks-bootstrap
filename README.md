@@ -18,8 +18,8 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.80.0 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.34.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.12.0 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.38.0 |
 
 ## Modules
 
@@ -57,8 +57,13 @@ No requirements.
 | <a name="input_eks_cluster_node_groups_default_configuration"></a> [eks\_cluster\_node\_groups\_default\_configuration](#input\_eks\_cluster\_node\_groups\_default\_configuration) | EKS managed node group default configurations | `any` | <pre>{<br/>  "attach_cluster_primary_security_group": true,<br/>  "desired_size": 3,<br/>  "disk_size": 40,<br/>  "instance_types": [<br/>    "m5.large"<br/>  ],<br/>  "labels": {<br/>    "node-group": "default"<br/>  },<br/>  "max_size": 5,<br/>  "min_size": 1<br/>}</pre> | no |
 | <a name="input_eks_cluster_version"></a> [eks\_cluster\_version](#input\_eks\_cluster\_version) | Kubernetes cluster version | `string` | `"1.26"` | no |
 | <a name="input_eks_create"></a> [eks\_create](#input\_eks\_create) | Specifies if actually create the EKS cluster | `bool` | `true` | no |
+| <a name="input_eks_create_kms_key"></a> [eks\_create\_kms\_key](#input\_eks\_create\_kms\_key) | Should KMS key to encrypt kubernetes secrets be generated | `bool` | `true` | no |
 | <a name="input_eks_default_cluster_addons"></a> [eks\_default\_cluster\_addons](#input\_eks\_default\_cluster\_addons) | Map of default cluster addon configurations to enable for the cluster. | `any` | <pre>{<br/>  "coredns": {<br/>    "most_recent": true,<br/>    "preserve": true,<br/>    "resolve_conflicts": "OVERWRITE"<br/>  },<br/>  "kube-proxy": {<br/>    "most_recent": true,<br/>    "preserve": true,<br/>    "resolve_conflicts": "OVERWRITE"<br/>  },<br/>  "vpc-cni": {<br/>    "most_recent": true,<br/>    "preserve": true,<br/>    "resolve_conflicts": "OVERWRITE"<br/>  }<br/>}</pre> | no |
-| <a name="input_eks_enable_secret_encryption"></a> [eks\_enable\_secret\_encryption](#input\_eks\_enable\_secret\_encryption) | Should KMS key to encrypt kubernetes secrets be generated | `bool` | `true` | no |
+| <a name="input_eks_kms_key_administrators"></a> [eks\_kms\_key\_administrators](#input\_eks\_kms\_key\_administrators) | List of ARNs of users/roles that should have administrator access to the KMS key | `list(string)` | `[]` | no |
+| <a name="input_eks_kms_key_enable_default_policy"></a> [eks\_kms\_key\_enable\_default\_policy](#input\_eks\_kms\_key\_enable\_default\_policy) | Should default KMS key policy be created | `bool` | `false` | no |
+| <a name="input_eks_kms_key_owners"></a> [eks\_kms\_key\_owners](#input\_eks\_kms\_key\_owners) | List of ARNs of users/roles that should have owner access to the KMS key | `list(string)` | `[]` | no |
+| <a name="input_eks_kms_key_service_users"></a> [eks\_kms\_key\_service\_users](#input\_eks\_kms\_key\_service\_users) | A list of IAM ARNs for key service users | `list(string)` | `[]` | no |
+| <a name="input_eks_kms_key_users"></a> [eks\_kms\_key\_users](#input\_eks\_kms\_key\_users) | A list of IAM ARNs for key users | `list(string)` | `[]` | no |
 | <a name="input_eks_node_security_group_tags"></a> [eks\_node\_security\_group\_tags](#input\_eks\_node\_security\_group\_tags) | Map of tags for eks node sg | `map(string)` | `{}` | no |
 | <a name="input_eks_single_az"></a> [eks\_single\_az](#input\_eks\_single\_az) | Specifies if all node's should be deployed in the same AZ | `bool` | `false` | no |
 | <a name="input_eks_storage_classes"></a> [eks\_storage\_classes](#input\_eks\_storage\_classes) | EBS storage class with custom parameters | <pre>list(object({<br/>    name                      = string<br/>    storage_class_provisioner = string<br/>    parameters                = optional(map(string))<br/>    volume_binding_mode       = optional(string)<br/>    reclaim_policy            = optional(string)<br/><br/>    }<br/>  ))</pre> | `[]` | no |
